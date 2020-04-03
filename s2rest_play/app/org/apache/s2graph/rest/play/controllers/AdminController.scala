@@ -337,6 +337,27 @@ object AdminController extends Controller {
     ok(s"${newProps.size} is added.")
   }
 
+    /**
+    * get serviceColumns's props
+    *
+    * @param serviceName service name
+    * @param columnName  column name
+    * @return
+    */
+  def getServiceColumnProps(serviceName: String, columnName: String) = Action { request =>
+    val columnMetaOpt = for {
+      service <- Service.findByName(serviceName)
+      serviceColumn <- ServiceColumn.find(service.id.get, columnName, useCache = false)
+    } yield ColumnMeta.findAllByColumn(serviceColumn.id.get)
+
+    columnMetaOpt match {
+      case None => notFound(s"Service $serviceName not found")
+      case Some(columnMetas) => {
+        ok(Json.obj("serviceColumn" -> columnName, "props" -> columnMetas.map(x => Json.obj("name" -> x.name, "dataType" -> x.dataType))))
+      }
+    }
+  }
+  
   /**
    * copy label
    * @param oldLabelName
