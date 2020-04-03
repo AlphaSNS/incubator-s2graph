@@ -90,6 +90,7 @@ PUT         /graphs/deleteServiceColumn/:serviceName/:columnName          org.ap
 POST        /graphs/addServiceColumnProp/:serviceName/:columnName         org.apache.s2graph.rest.play.controllers.AdminController.addServiceColumnProp(serviceName, columnName)
 POST        /graphs/addServiceColumnProps/:serviceName/:columnName        org.apache.s2graph.rest.play.controllers.AdminController.addServiceColumnProps(serviceName, columnName)
 GET         /graphs/getServiceColumn/:serviceName/:columnName             org.apache.s2graph.rest.play.controllers.AdminController.getServiceColumn(serviceName, columnName)
+GET         /graphs/getServiceColumnProps/:serviceName/:columnName        org.apache.s2graph.rest.play.controllers.AdminController.getServiceColumnProps(serviceName, columnName)
 POST        /graphs/createHTable                                          org.apache.s2graph.rest.play.controllers.AdminController.createHTable()
 
 
